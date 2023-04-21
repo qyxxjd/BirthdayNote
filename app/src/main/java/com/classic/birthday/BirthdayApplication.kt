@@ -7,7 +7,7 @@ import android.app.Application
  * Birthday application
  *
  * @author Classic
- * @version 2023-04-21 13:12
+ * @version 2023/4/21 15:07
  */
 class BirthdayApplication : Application() {
 

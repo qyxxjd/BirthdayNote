@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card"
+    android:layout_width="match_parent"
+    android:layout_height="96dp"
+    android:layout_marginTop="@dimen/margin_larger"
+    android:layout_marginStart="@dimen/margin_larger"
+    android:layout_marginEnd="@dimen/margin_larger"
+    app:contentPadding="@dimen/margin_larger"
+    app:cardElevation="0dp"
+    app:cardCornerRadius="@dimen/radius_larger"
+    app:cardBackgroundColor="@color/white">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/photo"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center_vertical"
+        app:shapeAppearance="@style/RoundedImage"
+        android:src="@drawable/ic_default_photo"/>
+
+    <LinearLayout style="@style/Layout.Vertical"
+        android:layout_marginStart="80dp">
+
+        <TextView style="@style/Text"
+            android:id="@+id/title"
+            android:textSize="@dimen/font_normal"
+            tools:text="@tools:sample/full_names"/>
+
+        <TextView style="@style/Text.Secondary"
+            android:id="@+id/birthday"
+            tools:text="2016-06-06 农历九月初八"/>
+
+        <androidx.appcompat.widget.AppCompatTextView style="@style/AutoText"
+            android:id="@+id/desc"
+            tools:text="已出生6年8个月零3天，距离下次生日还有365天"/>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

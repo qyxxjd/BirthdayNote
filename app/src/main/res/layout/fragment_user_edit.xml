@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Scroll"
+    android:paddingStart="@dimen/margin_larger"
+    android:paddingEnd="@dimen/margin_larger">
+
+    <LinearLayout style="@style/Layout.Vertical"
+        tools:ignore="LabelFor">
+
+        <com.google.android.material.textfield.TextInputLayout style="@style/Add.InputLayout"
+            android:id="@+id/name_layout"
+            android:hint="@string/hint_name">
+            <com.google.android.material.textfield.TextInputEditText style="@style/Add.InputText"
+                android:maxLength="10"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout style="@style/Add.DropdownMenuLayout"
+            android:id="@+id/date_layout"
+            app:endIconDrawable="@drawable/svg_date_gray"
+            app:endIconContentDescription="@string/hint_birthday"
+            android:hint="@string/hint_birthday">
+            <AutoCompleteTextView style="@style/Add.MenuText"
+                tools:text="2021-12-12"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout style="@style/Layout.Horizontal"
+            android:layout_marginTop="@dimen/margin_larger">
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:id="@+id/menu_reset_cover"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:text="@string/hint_photo_reset"/>
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:id="@+id/menu_choose_cover"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:text="@string/hint_photo_choose"/>
+        </LinearLayout>
+        <com.google.android.material.imageview.ShapeableImageView style="@style/Image"
+            android:id="@+id/cover"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:src="@drawable/ic_default_photo"
+            android:contentDescription="@string/hint_photo"
+            app:shapeAppearance="@style/RoundedImage"/>
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Material3.Button.UnelevatedButton"
+            android:id="@+id/menu_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_larger"
+            android:layout_marginBottom="@dimen/margin_larger"
+            android:text="保存"/>
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,160 @@
+<resources>
+    <!-- 文本 -->
+    <style name="Text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/primary_text</item>
+    </style>
+
+    <style name="Text.Secondary">
+        <item name="android:textColor">@color/secondary_text</item>
+    </style>
+
+    <!--<style name="Text.Highlight">
+        <item name="android:textColor">@color/inputHint</item>
+    </style>-->
+
+    <style name="Text.Center">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="Text.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.SingleLine">
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="Text.DoubleLine">
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="Text.White">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Text.White.Shadow">
+        <item name="android:shadowColor">@color/primary_text</item>
+        <item name="android:shadowDx">0.0</item>
+        <item name="android:shadowDy">2.0</item>
+        <item name="android:shadowRadius">3.0</item>
+    </style>
+
+    <style name="Text.HorizontalWeight">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="Text.HorizontalWeight.SingleLine">
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <!-- 自适应字体 -->
+    <style name="AutoText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/secondary_text</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">14sp</item>
+        <item name="autoSizeMaxTextSize">14sp</item>
+        <item name="autoSizeMinTextSize">8sp</item>
+        <item name="autoSizeStepGranularity">1sp</item>
+        <item name="autoSizeTextType">uniform</item>
+    </style>
+
+    <!-- 分割线 -->
+    <style name="Line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/divider</item>
+    </style>
+
+    <style name="Line.Vertical">
+        <item name="android:layout_width">0.5dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/divider</item>
+    </style>
+
+    <!-- 输入框 -->
+    <style name="Input" parent="@android:style/Widget.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:textColorHint">@color/secondary_text</item>
+        <item name="android:background">@null</item>
+        <item name="android:inputType">text</item>
+    </style>
+
+    <style name="Input.HorizontalWeight">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="Input.Number">
+        <item name="android:inputType">number</item>
+    </style>
+
+    <style name="Input.Phone">
+        <item name="android:inputType">phone</item>
+    </style>
+
+    <style name="Input.NumberDecimal">
+        <item name="android:inputType">numberDecimal</item>
+    </style>
+
+    <style name="Input.MultiLine">
+        <item name="android:inputType">textMultiLine</item>
+    </style>
+
+
+    <style name="Add" />
+    <style name="Add.DropdownMenuLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/margin_larger</item>
+        <!-- 悬浮标签文字颜色-->
+        <item name="hintTextColor">@color/selector_navigation_color</item>
+        <!-- 边框线条颜色-->
+        <item name="boxStrokeColor">@color/selector_navigation_color</item>
+        <!-- 图标颜色-->
+        <item name="endIconTint">@color/selector_navigation_color</item>
+    </style>
+    <style name="Add.InputText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/primary_text</item>
+    </style>
+    <style name="Add.InputText.NumberDecimal">
+        <item name="android:inputType">numberDecimal</item>
+    </style>
+    <style name="Add.InputText.Number">
+        <item name="android:inputType">number</item>
+    </style>
+    <style name="Add.InputText.MultiLine">
+        <item name="android:inputType">textMultiLine</item>
+    </style>
+    <style name="Add.MenuText" parent="Add.InputText">
+        <item name="android:inputType">none</item>
+    </style>
+    <style name="Add.InputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/margin_larger</item>
+        <item name="endIconMode">clear_text</item>
+        <!-- 悬浮标签文字颜色-->
+        <item name="hintTextColor">@color/selector_navigation_color</item>
+        <!-- 边框线条颜色-->
+        <item name="boxStrokeColor">@color/selector_navigation_color</item>
+    </style>
+    <style name="Add.DateLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+</resources>

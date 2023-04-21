@@ -4,9 +4,9 @@
     <dimen name="margin_small">4dp</dimen>
     <dimen name="margin_very_small">2dp</dimen>
 
-    <dimen name="radius_larger">6dp</dimen>
-    <dimen name="radius_normal">4dp</dimen>
-    <dimen name="radius_small">2dp</dimen>
+    <dimen name="radius_larger">12dp</dimen>
+    <dimen name="radius_normal">6dp</dimen>
+    <dimen name="radius_small">4dp</dimen>
 
     <dimen name="font_larger">18sp</dimen>
     <dimen name="font_normal">16sp</dimen>
