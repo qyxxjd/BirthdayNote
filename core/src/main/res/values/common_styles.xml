@@ -1,0 +1,83 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="SpUsage">
+    <!-- 一些通用样式 -->
+    <!-- 注意事项：不涉及颜色的通用样式，否则适配深浅主题模式会有问题 -->
+
+    <style name="Ripple"/>
+    <style name="Ripple.Background">
+        <item name="android:clickable">true</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+    <style name="Ripple.Foreground">
+        <item name="android:clickable">true</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <style name="Layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="Layout.Wrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Layout.Vertical">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="Layout.Horizontal">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="Layout.Match">
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="Layout.Match.Vertical">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="Layout.Match.Horizontal">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="HorizontalWeight">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="VerticalWeight">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="Scroll">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:scrollbars">none</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:overScrollMode">never</item>
+    </style>
+
+    <!-- 图片 -->
+    <style name="Image">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="Image.Center">
+        <item name="android:scaleType">center</item>
+    </style>
+
+    <style name="Image.CenterInside">
+        <item name="android:scaleType">centerInside</item>
+    </style>
+
+    <style name="Image.FitXY">
+        <item name="android:scaleType">fitXY</item>
+    </style>
+
+</resources>

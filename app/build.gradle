@@ -1,0 +1,84 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+android {
+    namespace 'com.classic.birthday'
+    compileSdk compile_sdk_version
+    defaultConfig {
+        applicationId "com.classic.birthday"
+        minSdk min_sdk_version
+        targetSdk target_sdk_version
+        versionCode 1
+        versionName "1.0"
+
+        kapt {
+            arguments {
+                arg("room.schemaLocation", "$projectDir/schemas")
+            }
+        }
+        sourceSets {
+            androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
+        }
+    }
+    signingConfigs {
+        Classic {
+            storeFile file(uri("../tools/car.jks"))
+            storePassword STORE_PASSWORD
+            keyAlias KEY_ALIA
+            keyPassword KEY_PASSWORD
+        }
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            versionNameSuffix "-debug"
+            signingConfig signingConfigs.Classic
+            project.gradle.startParameter.excludedTaskNames.add('lint')  // 屏蔽lint耗时检查
+        }
+        release {
+            // 混淆
+            minifyEnabled false
+            // 移除无用的resource文件
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.Classic
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString()
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+}
+
+dependencies {
+    implementation project(path: ':core')
+    implementation files('libs/wheel_view-1.1.aar')
+    implementation files('libs/picker_view-1.1.aar')
+    // Sqlite
+    implementation "androidx.sqlite:sqlite-ktx:$sqlite_version"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    // 图片相关
+    // https://github.com/coil-kt/coil
+    implementation "io.coil-kt:coil:$coil_version"
+    // https://github.com/LuckSiege/PictureSelector
+    implementation "io.github.lucksiege:pictureselector:${picture_version}"
+    implementation "io.github.lucksiege:compress:${picture_version}"
+    implementation "io.github.lucksiege:ucrop:${picture_version}"
+    implementation "io.github.lucksiege:camerax:${picture_version}"
+
+}

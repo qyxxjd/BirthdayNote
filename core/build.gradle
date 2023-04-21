@@ -1,0 +1,60 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdkVersion compile_sdk_version
+    buildToolsVersion build_tools_version
+    defaultConfig {
+        minSdk min_sdk_version
+        targetSdk target_sdk_version
+        // 模块混淆配置
+        consumerProguardFiles 'proguard-rules.pro'
+    }
+    buildTypes {
+        release {
+            // minifyEnabled true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString()
+    buildFeatures {
+        viewBinding true
+    }
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+    namespace 'com.classic.core'
+}
+
+dependencies {
+    // Kotlin and Coroutines
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_coroutines_version"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_coroutines_version"
+    // AndroidX
+    api "com.google.android.material:material:$google_material_version"
+    api "androidx.appcompat:appcompat:$appcompat_version"
+    api "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
+    api "androidx.recyclerview:recyclerview:$recycler_view_version"
+    api "androidx.cardview:cardview:$card_view_version"
+    api "androidx.datastore:datastore-preferences:$data_store_version"
+    api "androidx.swiperefreshlayout:swiperefreshlayout:$swipe_refresh_layout_version"
+    // ktx
+    api "androidx.core:core-ktx:$core_version"
+    api "androidx.activity:activity-ktx:$activity_version"
+    api "androidx.fragment:fragment-ktx:$fragment_version"
+    api "androidx.collection:collection-ktx:$collection_version"
+    api "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    api "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
+    api "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+    // 日志
+    api "com.jakewharton.timber:timber:$timber_version"
+}
