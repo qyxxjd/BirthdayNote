@@ -18,12 +18,12 @@ class User : Serializable {
     @PrimaryKey(autoGenerate = true)
     var id: Long? = null
     /** 生日 */
-    var birthday: Long = 0
-    /** 标签 */
+    var birthday: Long = System.currentTimeMillis()
+    /** 名称 */
     var name: String = ""
     /** 照片 */
     var photo: String = ""
-    /** 备注 */
-    var remark: String = ""
+    // /** 备注 */
+    // var remark: String = ""
 
 }
