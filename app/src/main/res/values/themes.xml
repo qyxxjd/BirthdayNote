@@ -6,4 +6,7 @@
     </style>
 
     <style name="Theme.BirthdayNote" parent="Base.Theme.BirthdayNote" />
+
+    <style name="AlertDialog.Theme" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+    </style>
 </resources>

@@ -1,9 +1,9 @@
 package com.classic.birthday.ui.edit
 
-import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import androidx.fragment.app.FragmentManager
+import android.view.ViewGroup
 import coil.load
 import com.bigkoo.pickerview.builder.TimePickerBuilder
 import com.bigkoo.pickerview.listener.OnTimeSelectListener
@@ -12,15 +12,13 @@ import com.classic.birthday.R
 import com.classic.birthday.data.local.LocalDataSource
 import com.classic.birthday.data.local.User
 import com.classic.birthday.databinding.FragmentUserEditBinding
-import com.classic.birthday.ui.app.AppBottomSheetDialogFragment
+import com.classic.birthday.ui.app.AppActivity
 import com.classic.birthday.ui.gallery.GalleryManage
 import com.classic.core.ext.EMPTY
 import com.classic.core.ext.KEY_SERIAL
 import com.classic.core.ext.PATTERN_DATE
-import com.classic.core.ext.addSerializableArgument
 import com.classic.core.ext.applyFocus
 import com.classic.core.ext.format
-import com.classic.core.ext.hideKeyboard
 import com.classic.core.ext.ioTask
 import com.classic.core.ext.onClick
 import com.classic.core.ext.serializable
@@ -32,19 +30,18 @@ import com.classic.core.ui.vb.viewBinding
 import java.io.File
 import java.util.Calendar
 
-
 /**
- * 用户信息编辑
+ * TODO
  *
  * @author LiuBin
- * @date 2021/12/14 20:54
+ * @version 2023/4/23 10:55
  */
-class UserEditFragment : AppBottomSheetDialogFragment() {
+class UserEditActivity : AppActivity() {
     companion object {
-        fun start(fm: FragmentManager, user: User? = null) {
-            UserEditFragment().apply {
-                user?.let { addSerializableArgument(KEY_SERIAL, it) }
-            }.showDialog(fm)
+        fun start(context: Context, user: User? = null) {
+            val intent = Intent(context, UserEditActivity::class.java)
+            if (null != user) intent.putExtra(KEY_SERIAL, user)
+            context.startActivity(intent)
         }
     }
 
@@ -54,9 +51,8 @@ class UserEditFragment : AppBottomSheetDialogFragment() {
     private val viewBinding by viewBinding(FragmentUserEditBinding::bind)
     override fun layout() = R.layout.fragment_user_edit
 
-    @SuppressLint("SetTextI18n")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         isAdd = true
         dataSource = LocalDataSource.get(appContext)
         viewBinding.apply {
@@ -66,7 +62,7 @@ class UserEditFragment : AppBottomSheetDialogFragment() {
             menuResetCover.onClick { onResetCover() }
             menuSave.onClick { if (checkParams()) onSave() }
         }
-        serializable<User>(KEY_SERIAL)?.let {
+        intent?.serializable<User>(KEY_SERIAL)?.let {
             user = it
             isAdd = false
             setupName(user.name)
@@ -76,7 +72,7 @@ class UserEditFragment : AppBottomSheetDialogFragment() {
     }
 
     private fun onDatePicker() {
-        requireActivity().hideKeyboard()
+        hideKeyboard()
         create(user.birthday, { date, _ ->
             val time = date.time
             user.birthday = time
@@ -92,7 +88,7 @@ class UserEditFragment : AppBottomSheetDialogFragment() {
     }
 
     private fun onChooseCover() {
-        GalleryManage.get().single(requireActivity(), object : SingleCallback<String> {
+        GalleryManage.get().single(this, object : SingleCallback<String> {
             override fun onSingleResult(t: String) {
                 user.photo = t
                 setupCover(t)
@@ -134,7 +130,10 @@ class UserEditFragment : AppBottomSheetDialogFragment() {
     private fun onSave() {
         ioTask {
             if (isAdd) dataSource?.add(user) else dataSource?.modify(user)
-            withUI { toast("保存成功") }
+            withUI {
+                toast("保存成功")
+                onBackMenuClick()
+            }
         }
     }
 
@@ -149,8 +148,8 @@ class UserEditFragment : AppBottomSheetDialogFragment() {
         time: Long, listener: OnTimeSelectListener,
         @Suppress("SameParameterValue") useTime: Boolean = false
     ): TimePickerView {
-        val activity = requireActivity()
-        // val decorView: ViewGroup = activity.window.decorView.findViewById(android.R.id.content) as ViewGroup
+        val activity = this
+        val decorView: ViewGroup = activity.window.decorView.findViewById(android.R.id.content) as ViewGroup
         val type: BooleanArray = if (useTime)
             booleanArrayOf(true, true, true, true, true, false)
         else
@@ -159,8 +158,7 @@ class UserEditFragment : AppBottomSheetDialogFragment() {
 
         calendar.timeInMillis = time
         return TimePickerBuilder(activity, listener)
-            // .setDecorView(decorView)
-            // .setDecorView(requireView() as ViewGroup)
+            .setDecorView(decorView)
             .isCyclic(false)
             .setOutSideCancelable(false)
             .setType(type)

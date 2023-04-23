@@ -81,4 +81,6 @@ dependencies {
     implementation "io.github.lucksiege:ucrop:${picture_version}"
     implementation "io.github.lucksiege:camerax:${picture_version}"
 
+    // https://github.com/afkT/DevUtils
+    implementation 'io.github.afkt:DevAppX:2.4.2'
 }

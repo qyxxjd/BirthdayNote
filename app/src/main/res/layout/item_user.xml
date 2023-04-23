@@ -8,35 +8,33 @@
     android:layout_marginTop="@dimen/margin_larger"
     android:layout_marginStart="@dimen/margin_larger"
     android:layout_marginEnd="@dimen/margin_larger"
-    app:contentPadding="@dimen/margin_larger"
-    app:cardElevation="0dp"
-    app:cardCornerRadius="@dimen/radius_larger"
+    app:contentPadding="@dimen/margin_normal"
     app:cardBackgroundColor="@color/white">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/photo"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_gravity="center_vertical"
         app:shapeAppearance="@style/RoundedImage"
         android:src="@drawable/ic_default_photo"/>
 
     <LinearLayout style="@style/Layout.Vertical"
-        android:layout_marginStart="80dp">
-
-        <TextView style="@style/Text"
-            android:id="@+id/title"
-            android:textSize="@dimen/font_normal"
-            tools:text="@tools:sample/full_names"/>
-
+        android:layout_marginStart="88dp"
+        android:layout_gravity="bottom">
         <TextView style="@style/Text.Secondary"
             android:id="@+id/birthday"
             tools:text="2016-06-06 农历九月初八"/>
-
         <androidx.appcompat.widget.AppCompatTextView style="@style/AutoText"
             android:id="@+id/desc"
+            android:layout_marginTop="@dimen/margin_small"
             tools:text="已出生6年8个月零3天，距离下次生日还有365天"/>
-
     </LinearLayout>
+
+    <TextView style="@style/Text"
+        android:id="@+id/title"
+        android:textSize="@dimen/font_normal"
+        android:layout_marginStart="88dp"
+        tools:text="@tools:sample/full_names"/>
 
 </com.google.android.material.card.MaterialCardView>
