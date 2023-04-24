@@ -317,14 +317,44 @@ fun calculateDateDiff(startTime: Long, endTime: Long = System.currentTimeMillis(
  * @return 两个日期相差几年几个月零几天
  */
 fun calculateDateDiff(startTime: String, endTime: String): DateModel {
+    return calculateDateDiff(LocalDate.parse(startTime), LocalDate.parse(endTime))
+}
+/**
+ * 计算日期差
+ *
+ * @param startTime 开始时间
+ * @param endTime 结束时间
+ * @return 两个日期相差几年几个月零几天
+ */
+fun calculateDateDiff(startTime: LocalDate, endTime: LocalDate): DateModel {
     val diff = DateModel()
-    val start = LocalDate.parse(startTime)
-    val end = LocalDate.parse(endTime)
-    Period.between(start, end).apply {
+    Period.between(startTime, endTime).apply {
         diff.year = years
         diff.month = months
         diff.day = days
     }
     // Timber.tag("Date").e("起始时间：${start}，结束时间：${end}，相差：${diff}")
     return diff
+}
+
+/**
+ * 计算日期差几天
+ *
+ * @param startTime 开始时间，格式：2016-01-19
+ * @param endTime 结束时间，格式：2016-01-19
+ */
+fun calculateDayDiff(startTime: String, endTime: String): Long {
+    return calculateDayDiff(LocalDate.parse(startTime), LocalDate.parse(endTime))
+}
+/**
+ * 计算日期差几天
+ *
+ * @param startTime 开始时间
+ * @param endTime 结束时间
+ * @return 两个日期相差几天
+ */
+fun calculateDayDiff(startTime: LocalDate, endTime: LocalDate): Long {
+    @Suppress("UnnecessaryVariable") val day = startTime.toEpochDay() - endTime.toEpochDay()
+    // Timber.tag("Date").e("起始时间：${startTime}，结束时间：${endTime}，相差：${day} 天")
+    return day
 }

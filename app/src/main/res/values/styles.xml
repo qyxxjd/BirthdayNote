@@ -115,7 +115,7 @@
 
 
     <style name="Add" />
-    <style name="Add.DropdownMenuLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+    <style name="Add.DropdownMenuLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">@dimen/margin_larger</item>
@@ -143,7 +143,7 @@
     <style name="Add.MenuText" parent="Add.InputText">
         <item name="android:inputType">none</item>
     </style>
-    <style name="Add.InputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+    <style name="Add.InputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">@dimen/margin_larger</item>
