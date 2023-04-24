@@ -1,12 +1,29 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.BirthdayNote" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.BirthdayNote" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryVariant">@color/color_primary_variant</item>
+        <item name="colorOnPrimary">@color/color_on_primary</item>
+        <item name="colorSecondary">@color/color_secondary</item>
+        <item name="colorSecondaryVariant">@color/color_secondary</item>
+        <item name="colorOnSecondary">@color/color_on_secondary</item>
+
+        <item name="android:statusBarColor" tools:targetApi="l">@color/color_status_bar</item>
+        <!--<item name="android:navigationBarColor" tools:targetApi="l">@color/color_navigation_bar</item>-->
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:colorBackground">@color/white</item>
+
+        <!-- Window decor -->
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
     </style>
 
     <style name="Theme.BirthdayNote" parent="Base.Theme.BirthdayNote" />
 
-    <style name="AlertDialog.Theme" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+    <style name="AlertDialog.Theme" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
     </style>
 </resources>

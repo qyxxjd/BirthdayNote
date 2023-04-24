@@ -2,11 +2,31 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#999999</color>
+    <color name="divider">#E6E6E6</color>
+    <color name="background">#F7F7F7</color>
+
+    <color name="home_navigation_selected">@color/blue_500</color>
+    <color name="home_navigation_unselected">@color/secondary_text</color>
 
     <color name="blue_200">#FF90CAF9</color>
     <color name="blue_500">#FF2196F3</color>
     <color name="blue_700">#FF1976D2</color>
+    <color name="color_accent">#FF4081</color>
 
-    <color name="home_navigation_selected">@color/blue_500</color>
-    <color name="home_navigation_unselected">@color/secondary_text</color>
+    <!-- 主题色 -->
+    <color name="color_primary">@color/blue_500</color>
+    <!-- 主题色的浅色或深色版本 -->
+    <color name="color_primary_variant">@color/blue_500</color>
+    <!-- 主题色上面的文字、图标颜色 -->
+    <color name="color_on_primary">@color/white</color>
+    <!-- 强调色 -->
+    <color name="color_secondary">@color/color_accent</color>
+    <!-- 强调色上面的文字、图标颜色 -->
+    <color name="color_on_secondary">@color/white</color>
+    <!-- 状态栏背景色 -->
+    <color name="color_status_bar">@color/color_primary_variant</color>
+    <!-- 导航栏背景色 -->
+    <color name="color_navigation_bar">@color/white</color>
 </resources>

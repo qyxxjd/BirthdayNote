@@ -16,11 +16,14 @@ import com.classic.birthday.ui.app.AppActivity
 import com.classic.birthday.ui.gallery.GalleryManage
 import com.classic.core.ext.EMPTY
 import com.classic.core.ext.KEY_SERIAL
-import com.classic.core.ext.PATTERN_DATE
+import com.classic.core.ext.PATTERN_DATE_TIME_SHORT
 import com.classic.core.ext.applyFocus
+import com.classic.core.ext.applyHeight
+import com.classic.core.ext.dp
 import com.classic.core.ext.format
 import com.classic.core.ext.ioTask
 import com.classic.core.ext.onClick
+import com.classic.core.ext.screenMinSize
 import com.classic.core.ext.serializable
 import com.classic.core.ext.text
 import com.classic.core.ext.toast
@@ -53,6 +56,7 @@ class UserEditActivity : AppActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         isAdd = true
         dataSource = LocalDataSource.get(appContext)
         viewBinding.apply {
@@ -61,6 +65,9 @@ class UserEditActivity : AppActivity() {
             menuChooseCover.onClick { onChooseCover() }
             menuResetCover.onClick { onResetCover() }
             menuSave.onClick { if (checkParams()) onSave() }
+
+            // 正方形
+            cover.applyHeight(appContext.screenMinSize() - 32.dp)
         }
         intent?.serializable<User>(KEY_SERIAL)?.let {
             user = it
@@ -77,10 +84,10 @@ class UserEditActivity : AppActivity() {
             val time = date.time
             user.birthday = time
             setupDate(time)
-        }, false).show()
+        }, true).show()
     }
     private fun setupDate(time: Long) {
-        (viewBinding.dateLayout.editText)?.setText(time.format(PATTERN_DATE))
+        (viewBinding.dateLayout.editText)?.setText(time.format(PATTERN_DATE_TIME_SHORT))
     }
 
     private fun setupName(name: String) {
@@ -146,7 +153,7 @@ class UserEditActivity : AppActivity() {
      */
     private fun create(
         time: Long, listener: OnTimeSelectListener,
-        @Suppress("SameParameterValue") useTime: Boolean = false
+        @Suppress("SameParameterValue") useTime: Boolean = true
     ): TimePickerView {
         val activity = this
         val decorView: ViewGroup = activity.window.decorView.findViewById(android.R.id.content) as ViewGroup

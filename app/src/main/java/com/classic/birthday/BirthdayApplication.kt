@@ -2,6 +2,7 @@
 package com.classic.birthday
 
 import android.app.Application
+import timber.log.Timber
 
 /**
  * Birthday application
@@ -14,5 +15,6 @@ class BirthdayApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         // LocalApi.get().init(this)
+        Timber.plant(Timber.DebugTree())
     }
 }

@@ -37,7 +37,7 @@ class MainActivity : AppActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
-        setSupportActionBar(viewBinding.toolbar)
+        // setSupportActionBar(viewBinding.toolbar)
         dataSource = LocalDataSource.get(appContext)
         viewBinding.recyclerView.applyLinearConfig(adapter = userAdapter)
         viewBinding.fab.setOnClickListener { editUser() }

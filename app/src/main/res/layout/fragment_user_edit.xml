@@ -28,7 +28,7 @@
         <LinearLayout style="@style/Layout.Horizontal"
             android:layout_marginTop="@dimen/margin_larger">
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.Material3.Button.OutlinedButton"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:id="@+id/menu_reset_cover"
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -36,7 +36,7 @@
                 android:layout_marginEnd="@dimen/margin_normal"
                 android:text="@string/hint_photo_reset"/>
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.Material3.Button.OutlinedButton"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:id="@+id/menu_choose_cover"
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -53,7 +53,7 @@
             app:shapeAppearance="@style/RoundedImage"/>
 
         <com.google.android.material.button.MaterialButton
-            style="@style/Widget.Material3.Button.UnelevatedButton"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
             android:id="@+id/menu_save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
