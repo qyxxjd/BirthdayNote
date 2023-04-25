@@ -49,14 +49,15 @@ class UserAdapter : ViewBindingAdapter<User, ItemUserBinding>() {
             val month = CalendarUtils.getLunarMonthChinese(lunar[1], false)
             val day = CalendarUtils.getLunarDayChinese(lunar[2])
             birthday.text = "${item.birthday.format(PATTERN_DATE_TIME_SHORT)}  农历${year}年$month$day"
-            val days = nextBirthdayDays(lunar)
-            if (days > 0) {
-                desc.applyHtml(
-                    "已出生${calculateDateDiff(item.birthday).toString().toHtmlColorText("#00C0E4")}，距离下次生日还有${days.toString().toHtmlColorText("#00C0E4")}天"
+            age.applyHtml("已出生${calculateDateDiff(item.birthday).toString().toHtmlColorText("#00C0E4")}")
+            val nextBirthdayResult = nextBirthdayDays(lunar)
+            if (nextBirthdayResult.diff > 0) {
+                nextBirthday.applyHtml(
+                    "下一个生日${nextBirthdayResult.date.toString().toHtmlColorText("#00C0E4")}，还有${nextBirthdayResult.diff.toString().toHtmlColorText("#00C0E4")}天"
                 )
             } else {
-                desc.applyHtml(
-                    "已出生${calculateDateDiff(item.birthday).toString().toHtmlColorText("#00C0E4")}，生日快乐！"
+                nextBirthday.applyHtml(
+                    "${nextBirthdayResult.date.toString().toHtmlColorText("#00C0E4")}，祝您生日快乐！"
                 )
             }
 
@@ -77,28 +78,32 @@ class UserAdapter : ViewBindingAdapter<User, ItemUserBinding>() {
     /**
      * 计算下一个生日距离当前的天数
      */
-    private fun nextBirthdayDays(lunarBirthday: IntArray): Long {
+    private fun nextBirthdayDays(lunarBirthday: IntArray): NextBirthday {
         val now = LocalDate.now()
         // 今年阳历生日
         val nowBirthday = CalendarUtils.lunarToSolar(now.year, lunarBirthday[1], lunarBirthday[2], false)
         val nowBirthdayDate = LocalDate.of(nowBirthday[0], nowBirthday[1], nowBirthday[2])
-        Timber.tag("Birthday").e("今年阳历生日：$nowBirthdayDate")
+        // 明年阳历生日
+        val nextBirthday = CalendarUtils.lunarToSolar(now.year + 1, lunarBirthday[1], lunarBirthday[2], false)
+        val nextBirthdayDate = LocalDate.of(nextBirthday[0], nextBirthday[1], nextBirthday[2])
+        Timber.tag("Birthday").e("今年阳历生日：$nowBirthdayDate, 明年阳历生日：$nextBirthdayDate")
         // 今年阳历生日和当前时间差异的天数
         val diff = nowBirthdayDate.toEpochDay() - now.toEpochDay()
         return when {
             // 等于0，代表今天就是生日
-            diff == 0L -> 0L
+            diff == 0L -> NextBirthday(nowBirthdayDate, 0L)
             // 小于0，代表今年的生日已经过了，计算下一年的差值
             diff < 0 -> {
-                // 明年阳历生日
-                val nextBirthday = CalendarUtils.lunarToSolar(now.year + 1, lunarBirthday[1], lunarBirthday[2], false)
-                val nextBirthdayDate = LocalDate.of(nextBirthday[0], nextBirthday[1], nextBirthday[2])
-                Timber.tag("Birthday").e("明年阳历生日：$nextBirthdayDate")
-                nextBirthdayDate.toEpochDay() - now.toEpochDay()
+                NextBirthday(nextBirthdayDate, nextBirthdayDate.toEpochDay() - now.toEpochDay())
             }
             // 大于0，代表今年的生日未过
-            else -> diff
+            else -> NextBirthday(nowBirthdayDate, diff)
         }
     }
 
 }
+
+data class NextBirthday(
+    val date: LocalDate,
+    val diff: Long
+)

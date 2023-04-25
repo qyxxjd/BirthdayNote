@@ -61,6 +61,12 @@ android {
         abortOnError false
         checkReleaseBuilds false
     }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "BirthdayNote_v${defaultConfig.versionName}_${defaultConfig.versionCode}_${variant.buildType.name}.apk"
+        }
+    }
 }
 
 dependencies {

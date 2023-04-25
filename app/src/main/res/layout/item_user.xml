@@ -25,12 +25,16 @@
         android:layout_marginStart="88dp"
         android:layout_gravity="bottom">
         <androidx.appcompat.widget.AppCompatTextView style="@style/AutoText"
-            android:id="@+id/desc"
-            tools:text="已出生6年8个月零3天，距离下次生日还有365天"/>
+            android:id="@+id/age"
+            tools:text="已出生6年8个月零3天"/>
+        <androidx.appcompat.widget.AppCompatTextView style="@style/AutoText"
+            android:id="@+id/next_birthday"
+            android:layout_marginTop="@dimen/margin_very_small"
+            tools:text="下一个生日2017-06-06，还有365天"/>
         <androidx.appcompat.widget.AppCompatTextView style="@style/AutoText"
             android:id="@+id/birthday"
-            android:layout_marginTop="@dimen/margin_small"
-            tools:text="2016-06-06 农历九月初八"/>
+            android:layout_marginTop="@dimen/margin_very_small"
+            tools:text="2016-06-06 10:30 农历九月初八"/>
     </LinearLayout>
 
     <TextView style="@style/Text"

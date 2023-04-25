@@ -53,6 +53,10 @@ class MainActivity : AppActivity() {
             }
         }
         checkManageExternalPermissions()
+
+        // val nextBirthday = CalendarUtils.lunarToSolar(1990, 9, 12, false)
+        // val nextBirthdayDate = LocalDate.of(nextBirthday[0], nextBirthday[1], nextBirthday[2])
+        // Timber.tag("Birthday").e("阳历生日：$nextBirthdayDate")
     }
 
     override fun onResume() {
@@ -61,7 +65,6 @@ class MainActivity : AppActivity() {
     }
 
     private fun editUser(user: User? = null) {
-        // UserEditFragment.start(fm(), user)
         UserEditActivity.start(this, user)
     }
 
