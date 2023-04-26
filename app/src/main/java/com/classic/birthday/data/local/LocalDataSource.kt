@@ -26,6 +26,8 @@ class LocalDataSource(context: Context) {
 
     fun add(info: User): Long? = dao.insert(info)
 
+    fun addAll(list: List<User>): Array<Long> = dao.insert(list)
+
     fun delete(info: User): Int = dao.delete(info)
 
     fun modify(info: User): Int = dao.update(info)

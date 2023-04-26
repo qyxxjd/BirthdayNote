@@ -3,6 +3,8 @@ package com.classic.birthday.ui.edit
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.ViewGroup
 import coil.load
 import com.bigkoo.pickerview.builder.TimePickerBuilder
@@ -64,7 +66,7 @@ class UserEditActivity : AppActivity() {
             dateLayout.setEndIconOnClickListener { onDatePicker() }
             menuChooseCover.onClick { onChooseCover() }
             menuResetCover.onClick { onResetCover() }
-            menuSave.onClick { if (checkParams()) onSave() }
+            // menuSave.onClick { if (checkParams()) onSave() }
 
             // 正方形
             cover.applyHeight(appContext.screenMinSize() - 32.dp)
@@ -73,9 +75,22 @@ class UserEditActivity : AppActivity() {
             user = it
             isAdd = false
             setupName(user.name)
-            setupCover(user.photo)
+            setupRemark(user.remark)
+            setupCover(user)
         }
         setupDate(user.birthday)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_edit, menu)
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_save) {
+            if (checkParams()) onSave()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun onDatePicker() {
@@ -93,39 +108,42 @@ class UserEditActivity : AppActivity() {
     private fun setupName(name: String) {
         (viewBinding.nameLayout.editText)?.setText(name)
     }
+    private fun setupRemark(remark: String) {
+        (viewBinding.remarkLayout.editText)?.setText(remark)
+    }
 
     private fun onChooseCover() {
         GalleryManage.get().single(this, object : SingleCallback<String> {
             override fun onSingleResult(t: String) {
                 user.photo = t
-                setupCover(t)
+                setupCover(user)
             }
         })
     }
-    private val cover = R.drawable.ic_default_photo
-    private fun setupCover(path: String?) {
-        if (path.isNullOrEmpty()) {
-            viewBinding.cover.setImageResource(cover)
+    private fun setupCover(user: User) {
+        if (user.photo.isEmpty()) {
+            viewBinding.cover.setImageResource(user.photoResId)
         } else {
             try {
-                viewBinding.cover.load(File(path))
-                // viewBinding.cover.load(File(path).toBitmap())
+                viewBinding.cover.load(File(user.photo))
             } catch (e: Exception) {
                 e.printStackTrace()
                 toast("加载图片异常：${e.message}")
-                viewBinding.cover.setImageResource(cover)
+                viewBinding.cover.setImageResource(user.photoResId)
             }
         }
     }
 
     private fun onResetCover() {
         user.photo = EMPTY
-        setupCover(EMPTY)
+        user.photoResId = R.drawable.ic_default_photo
+        setupCover(user)
     }
 
     private fun checkParams(): Boolean {
         viewBinding.apply {
             user.name = nameLayout.editText.text()
+            user.remark = remarkLayout.editText.text()
             if (user.name.isEmpty()) {
                 toast("请输入姓名")
                 nameLayout.editText?.applyFocus()

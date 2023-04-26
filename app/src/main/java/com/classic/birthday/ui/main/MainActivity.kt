@@ -37,7 +37,6 @@ class MainActivity : AppActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
-        // setSupportActionBar(viewBinding.toolbar)
         dataSource = LocalDataSource.get(appContext)
         viewBinding.recyclerView.applyLinearConfig(adapter = userAdapter)
         viewBinding.fab.setOnClickListener { editUser() }
@@ -80,11 +79,31 @@ class MainActivity : AppActivity() {
 
     private fun loadData() {
         async {
+            // if (LocalApi.get().isFirst()) {
+            //     val list = mutableListOf<User>()
+            //     // list.add(User().apply {
+            //     //     name = "续写经典"
+            //     //     birthday = "1990-10-29 00:00:00".parse().time
+            //     // })
+            //     list.add(User().apply {
+            //         name = "刘佳宜"
+            //         birthday = "2016-01-19 19:06:00".parse().time
+            //         photoResId = R.drawable.ic_photo_jy
+            //     })
+            //     list.add(User().apply {
+            //         name = "刘若泠"
+            //         birthday = "2022-11-08 10:58:00".parse().time
+            //         photoResId = R.drawable.ic_photo_rl
+            //     })
+            //     dataSource?.addAll(list)
+            //     LocalApi.get().saveIsFirst(false)
+            // }
             dataSource?.queryAll() ?: mutableListOf()
         } ui {
             list.clear()
             list.addAll(it)
-            userAdapter.replaceAll(it, true)
+            userAdapter.replaceAll(list)
+            viewBinding.recyclerView.adapter = userAdapter
         }
     }
 
@@ -121,7 +140,7 @@ class MainActivity : AppActivity() {
         }
     }
     private fun showManageExternalPermissionsDialog() {
-        DialogUtil.custom(this, "温馨提示", "数据备份、数据恢复功能需要使用存储卡管理权限", "取消", "去授权",
+        DialogUtil.custom(this, "温馨提示", "相册功能需要使用存储卡管理权限", "取消", "去授权",
             listener = { _, which ->
                 if (DialogInterface.BUTTON_POSITIVE == which) {
                     requestManageExternalPermissions()

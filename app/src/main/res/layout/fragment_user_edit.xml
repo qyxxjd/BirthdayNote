@@ -52,13 +52,22 @@
             android:contentDescription="@string/hint_photo"
             app:shapeAppearance="@style/RoundedImage"/>
 
-        <com.google.android.material.button.MaterialButton
+        <com.google.android.material.textfield.TextInputLayout style="@style/Add.InputLayout"
+            android:id="@+id/remark_layout"
+            android:hint="@string/hint_remark">
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/Add.InputText.MultiLine"
+                android:minLines="3"
+                android:gravity="start"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--<com.google.android.material.button.MaterialButton
             style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
             android:id="@+id/menu_save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_larger"
             android:layout_marginBottom="@dimen/margin_larger"
-            android:text="保存"/>
+            android:text="保存"/>-->
     </LinearLayout>
 </ScrollView>

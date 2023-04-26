@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "0bf0bc80e29d8f1cedbed83d92d0d23a",
+    "identityHash": "db8c43907d479d108e18ce06cad1a82c",
     "entities": [
       {
         "tableName": "t_user",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `birthday` INTEGER NOT NULL, `name` TEXT NOT NULL, `photo` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `birthday` INTEGER NOT NULL, `name` TEXT NOT NULL, `photo` TEXT NOT NULL, `photoResId` INTEGER NOT NULL, `remark` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -31,6 +31,18 @@
             "columnName": "photo",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "photoResId",
+            "columnName": "photoResId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "remark",
+            "columnName": "remark",
+            "affinity": "TEXT",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -46,7 +58,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0bf0bc80e29d8f1cedbed83d92d0d23a')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'db8c43907d479d108e18ce06cad1a82c')"
     ]
   }
 }

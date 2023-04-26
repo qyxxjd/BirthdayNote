@@ -9,5 +9,6 @@
     <string name="hint_photo">照片</string>
     <string name="hint_photo_choose">更换照片</string>
     <string name="hint_photo_reset">重置默认</string>
+    <string name="hint_remark">备注</string>
 
 </resources>

@@ -20,6 +20,9 @@ interface UserDao {
     @Insert(onConflict = REPLACE)
     fun insert(info: User): Long?
 
+    @Insert(onConflict = REPLACE)
+    fun insert(list: List<User>): Array<Long>
+
     @Update
     fun update(info: User): Int
 
