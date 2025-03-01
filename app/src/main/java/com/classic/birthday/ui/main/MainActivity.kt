@@ -10,6 +10,7 @@ import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.WindowCompat
 import com.classic.birthday.R
+import com.classic.birthday.data.local.LocalApi
 import com.classic.birthday.data.local.LocalDataSource
 import com.classic.birthday.data.local.User
 import com.classic.birthday.databinding.ActivityMainBinding
@@ -24,7 +25,11 @@ import com.classic.core.ext.async
 import com.classic.core.ext.hasExternalPermission
 import com.classic.core.ext.hasManageExternalPermission
 import com.classic.core.ext.longToast
+import com.classic.core.ext.parse
 import com.classic.core.ui.vb.viewBinding
+import dev.utils.common.CalendarUtils
+import timber.log.Timber
+import java.time.LocalDate
 
 class MainActivity : AppActivity() {
 
@@ -53,9 +58,9 @@ class MainActivity : AppActivity() {
         }
         checkManageExternalPermissions()
 
-        // val nextBirthday = CalendarUtils.lunarToSolar(1990, 9, 12, false)
-        // val nextBirthdayDate = LocalDate.of(nextBirthday[0], nextBirthday[1], nextBirthday[2])
-        // Timber.tag("Birthday").e("阳历生日：$nextBirthdayDate")
+        val nextBirthday = CalendarUtils.lunarToSolar(2017, 12, 3, false)
+        val nextBirthdayDate = LocalDate.of(nextBirthday[0], nextBirthday[1], nextBirthday[2])
+        Timber.tag("Birthday").e("阳历生日：$nextBirthdayDate")
     }
 
     override fun onResume() {
@@ -79,25 +84,30 @@ class MainActivity : AppActivity() {
 
     private fun loadData() {
         async {
-            // if (LocalApi.get().isFirst()) {
-            //     val list = mutableListOf<User>()
-            //     // list.add(User().apply {
-            //     //     name = "续写经典"
-            //     //     birthday = "1990-10-29 00:00:00".parse().time
-            //     // })
-            //     list.add(User().apply {
-            //         name = "刘佳宜"
-            //         birthday = "2016-01-19 19:06:00".parse().time
-            //         photoResId = R.drawable.ic_photo_jy
-            //     })
-            //     list.add(User().apply {
-            //         name = "刘若泠"
-            //         birthday = "2022-11-08 10:58:00".parse().time
-            //         photoResId = R.drawable.ic_photo_rl
-            //     })
-            //     dataSource?.addAll(list)
-            //     LocalApi.get().saveIsFirst(false)
-            // }
+            if (LocalApi.get().isFirst()) {
+                val list = mutableListOf<User>()
+                list.add(User().apply {
+                    name = "续写经典"
+                    birthday = "1990-10-29 00:00:00".parse().time
+                })
+                list.add(User().apply {
+                    name = "刘佳宜"
+                    birthday = "2016-01-19 19:06:00".parse().time
+                    photoResId = R.drawable.ic_photo_jy
+                })
+                list.add(User().apply {
+                    name = "姜炳晟"
+                    birthday = "2018-01-19 00:00:00".parse().time
+                    photoResId = R.drawable.ic_photo_bs
+                })
+                list.add(User().apply {
+                    name = "刘若泠"
+                    birthday = "2022-11-08 10:58:00".parse().time
+                    photoResId = R.drawable.ic_photo_rl
+                })
+                dataSource?.addAll(list)
+                LocalApi.get().saveIsFirst(false)
+            }
             dataSource?.queryAll() ?: mutableListOf()
         } ui {
             list.clear()

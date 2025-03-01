@@ -5,7 +5,12 @@ package com.classic.core.ext
 import android.Manifest
 import android.content.ContentValues
 import android.content.Context
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Canvas
+import android.graphics.Matrix
+import android.graphics.NinePatch
+import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.NinePatchDrawable
 import android.os.Build
@@ -13,7 +18,11 @@ import android.os.Environment
 import android.provider.MediaStore
 import com.classic.core.data.MIME
 import timber.log.Timber
-import java.io.*
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.OutputStream
 
 
 /**
@@ -120,7 +129,7 @@ fun Bitmap.saveImageToGallery(
     val resolver = context.contentResolver
     val uri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
     if (uri != null) {
-        val out = resolver.openOutputStream(uri)
+        val out = resolver.openOutputStream(uri) ?: return false
         compress(format, quality, out)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             values.clear()

@@ -79,11 +79,14 @@ class UserAdapter : ViewBindingAdapter<User, ItemUserBinding>() {
      */
     private fun nextBirthdayDays(lunarBirthday: IntArray): NextBirthday {
         val now = LocalDate.now()
+        val ca = calendar()
+        // 今年农历
+        val nowLunar = CalendarUtils.solarToLunar(ca.year(), ca.month() + 1, ca.day())
         // 今年阳历生日
-        val nowBirthday = CalendarUtils.lunarToSolar(now.year, lunarBirthday[1], lunarBirthday[2], false)
+        val nowBirthday = CalendarUtils.lunarToSolar(nowLunar[0], lunarBirthday[1], lunarBirthday[2], false)
         val nowBirthdayDate = LocalDate.of(nowBirthday[0], nowBirthday[1], nowBirthday[2])
         // 明年阳历生日
-        val nextBirthday = CalendarUtils.lunarToSolar(now.year + 1, lunarBirthday[1], lunarBirthday[2], false)
+        val nextBirthday = CalendarUtils.lunarToSolar(nowLunar[0] + 1, lunarBirthday[1], lunarBirthday[2], false)
         val nextBirthdayDate = LocalDate.of(nextBirthday[0], nextBirthday[1], nextBirthday[2])
         Timber.tag("Birthday").e("今年阳历生日：$nowBirthdayDate, 明年阳历生日：$nextBirthdayDate")
         // 今年阳历生日和当前时间差异的天数
