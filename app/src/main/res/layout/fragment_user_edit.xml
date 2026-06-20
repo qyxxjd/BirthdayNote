@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/Scroll"
+    android:fitsSystemWindows="true"
+    android:clipToPadding="false"
     android:paddingStart="@dimen/margin_larger"
     android:paddingEnd="@dimen/margin_larger">
 

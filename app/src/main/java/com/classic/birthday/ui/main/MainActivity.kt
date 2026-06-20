@@ -8,8 +8,8 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.view.WindowCompat
 import com.classic.birthday.R
+import com.classic.birthday.data.local.Avatar
 import com.classic.birthday.data.local.LocalApi
 import com.classic.birthday.data.local.LocalDataSource
 import com.classic.birthday.data.local.User
@@ -27,9 +27,6 @@ import com.classic.core.ext.hasManageExternalPermission
 import com.classic.core.ext.longToast
 import com.classic.core.ext.parse
 import com.classic.core.ui.vb.viewBinding
-import dev.utils.common.CalendarUtils
-import timber.log.Timber
-import java.time.LocalDate
 
 class MainActivity : AppActivity() {
 
@@ -40,7 +37,6 @@ class MainActivity : AppActivity() {
     override fun layout() = R.layout.activity_main
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
         dataSource = LocalDataSource.get(appContext)
         viewBinding.recyclerView.applyLinearConfig(adapter = userAdapter)
@@ -58,9 +54,9 @@ class MainActivity : AppActivity() {
         }
         checkManageExternalPermissions()
 
-        val nextBirthday = CalendarUtils.lunarToSolar(2017, 12, 3, false)
-        val nextBirthdayDate = LocalDate.of(nextBirthday[0], nextBirthday[1], nextBirthday[2])
-        Timber.tag("Birthday").e("阳历生日：$nextBirthdayDate")
+        // val nextBirthday = CalendarUtils.lunarToSolar(2017, 12, 3, false)
+        // val nextBirthdayDate = LocalDate.of(nextBirthday[0], nextBirthday[1], nextBirthday[2])
+        // Timber.tag("Birthday").e("阳历生日：$nextBirthdayDate")
     }
 
     override fun onResume() {
@@ -93,17 +89,17 @@ class MainActivity : AppActivity() {
                 list.add(User().apply {
                     name = "刘佳宜"
                     birthday = "2016-01-19 19:06:00".parse().time
-                    photoResId = R.drawable.ic_photo_jy
+                    photoResId = Avatar.JY
                 })
                 list.add(User().apply {
                     name = "姜炳晟"
                     birthday = "2018-01-19 00:00:00".parse().time
-                    photoResId = R.drawable.ic_photo_bs
+                    photoResId = Avatar.BS
                 })
                 list.add(User().apply {
                     name = "刘若泠"
                     birthday = "2022-11-08 10:58:00".parse().time
-                    photoResId = R.drawable.ic_photo_rl
+                    photoResId = Avatar.RL
                 })
                 dataSource?.addAll(list)
                 LocalApi.get().saveIsFirst(false)

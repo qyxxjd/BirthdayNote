@@ -4,7 +4,6 @@ package com.classic.birthday.data.local
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.classic.birthday.R
 import java.io.Serializable
 
 /**
@@ -24,8 +23,11 @@ class User : Serializable {
     var name: String = ""
     /** 照片 */
     var photo: String = ""
-    /** 照片 */
-    var photoResId: Int = R.drawable.ic_default_photo
+    /**
+     * 预置头像编码（稳定值，见 [Avatar]）。
+     * 注意：不要再存储 R.drawable.xxx 资源 ID，资源 ID 不是跨构建稳定的。
+     */
+    var photoResId: Int = Avatar.DEFAULT
     /** 备注 */
     var remark: String = ""
 

@@ -1,16 +1,14 @@
 plugins {
     id 'com.android.library'
-    id 'kotlin-android'
 }
 
 android {
-    compileSdkVersion compile_sdk_version
+    compileSdk compile_sdk_version
     buildToolsVersion build_tools_version
     defaultConfig {
         minSdk min_sdk_version
-        targetSdk target_sdk_version
         // 模块混淆配置
-        consumerProguardFiles 'proguard-rules.pro'
+        consumerProguardFiles 'consumer-rules.pro'
     }
     buildTypes {
         release {
@@ -23,7 +21,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString()
     buildFeatures {
         viewBinding true
     }

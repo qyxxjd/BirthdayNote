@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import coil.load
+import com.classic.birthday.data.local.Avatar
 import com.classic.birthday.data.local.User
 import com.classic.birthday.databinding.ItemUserBinding
 import com.classic.core.ext.PATTERN_DATE_TIME_SHORT
@@ -61,14 +62,14 @@ class UserAdapter : ViewBindingAdapter<User, ItemUserBinding>() {
             }
 
             if (item.photo.isEmpty()) {
-                photo.setImageResource(item.photoResId)
+                photo.setImageResource(Avatar.resOf(item.photoResId))
             } else {
                 try {
                     photo.load(File(item.photo))
                 } catch (e: Exception) {
                     e.printStackTrace()
                     photo.context.toast("加载图片异常：${e.message} \n${item.photo}")
-                    photo.setImageResource(item.photoResId)
+                    photo.setImageResource(Avatar.resOf(item.photoResId))
                 }
             }
         }

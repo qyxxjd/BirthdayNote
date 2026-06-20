@@ -41,13 +41,16 @@
             android:name=".ui.main.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
+            android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.BirthdayNote">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.edit.UserEditActivity"/>
+        <activity
+            android:name=".ui.edit.UserEditActivity"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

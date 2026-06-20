@@ -50,7 +50,7 @@ fun Activity.hideKeyboard() {
 }
 
 fun Context.packageInfo(): PackageInfo = packageManager.getPackageInfo(packageName, 0)
-fun Context.versionName(): String = packageInfo().versionName
+fun Context.versionName(): String = packageInfo().versionName ?: ""
 fun Context.versionCode(): Long = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
     packageInfo().longVersionCode
 } else {

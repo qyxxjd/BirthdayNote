@@ -11,6 +11,7 @@ import com.bigkoo.pickerview.builder.TimePickerBuilder
 import com.bigkoo.pickerview.listener.OnTimeSelectListener
 import com.bigkoo.pickerview.view.TimePickerView
 import com.classic.birthday.R
+import com.classic.birthday.data.local.Avatar
 import com.classic.birthday.data.local.LocalDataSource
 import com.classic.birthday.data.local.User
 import com.classic.birthday.databinding.FragmentUserEditBinding
@@ -122,21 +123,21 @@ class UserEditActivity : AppActivity() {
     }
     private fun setupCover(user: User) {
         if (user.photo.isEmpty()) {
-            viewBinding.cover.setImageResource(user.photoResId)
+            viewBinding.cover.setImageResource(Avatar.resOf(user.photoResId))
         } else {
             try {
                 viewBinding.cover.load(File(user.photo))
             } catch (e: Exception) {
                 e.printStackTrace()
                 toast("加载图片异常：${e.message}")
-                viewBinding.cover.setImageResource(user.photoResId)
+                viewBinding.cover.setImageResource(Avatar.resOf(user.photoResId))
             }
         }
     }
 
     private fun onResetCover() {
         user.photo = EMPTY
-        user.photoResId = R.drawable.ic_default_photo
+        user.photoResId = Avatar.DEFAULT
         setupCover(user)
     }
 

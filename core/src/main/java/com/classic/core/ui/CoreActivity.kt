@@ -49,12 +49,10 @@ abstract class CoreActivity : AppCompatActivity() {
         if (autoHideKeyboard()) hideKeyboard()
     }
 
-    override fun onNewIntent(intent: Intent?) {
+    override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        intent?.let {
-            // 设置为当前的 Intent，避免 Activity 被杀死后重启 Intent 还是最原先的那个
-            setIntent(it)
-        }
+        // 设置为当前的 Intent，避免 Activity 被杀死后重启 Intent 还是最原先的那个
+        setIntent(intent)
         onObtainParams()
     }
 
